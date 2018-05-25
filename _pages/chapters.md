@@ -5,7 +5,7 @@ permalink: /chapters/
 title: "Chapters"
 ---
 
-# Chapters
+# 챕터
 
 <ol>
 	{% for chapter in site.chapters %}

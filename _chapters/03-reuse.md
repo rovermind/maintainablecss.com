@@ -1,62 +1,62 @@
 ---
 layout: chapter
-title: Reuse
+title: 재사용
 section: Background
 permalink: /chapters/reuse/
-description: Learn why avoiding reuse and embracing repetition makes CSS maintenance easier.
+description: 코드를 재사용하는 것을 피하고 반복하는 것이 CSS 유지보수를 더 쉽게 만드는 이유를 배워봅니다.
 ---
 
-As Harry Roberts says, “DRY is often misinterpreted as the necessity to never repeat the exact same thing twice. This is impractical and usually counterproductive, and can lead to forced abstractions, over-thought and over-engineered code.”
+Harry Roberts 는 말합니다. “DRY(중복배제의 원칙) 는 종종 같은 것을 두 번 이상 반복하지 말아야 할 것으로 잘못 해석됩니다. 이는 사실 터무니없고 애초의 의도와 반대된 것으로 과도한 생각과 강제된 추상화, 오버 엔지니어링 코드를 초래할 수 있습니다.”
 
-This forced abstraction, over-thought and over-engineered code often results in visual and atomic classes. We know how painful they are because we discussed them thoroughly in [semantics](/chapters/semantics/). Mixins may also be a problem which we'll discuss shortly.
+이렇게 강제된 추상화는, 수많은 생각과 오버 엔지니어링 코드를 낳게 되고 이는 시각적이며 요소 기반의 클래스라는 결과를 초래합니다. 우리는 앞서 [의미론적인](/chapters/semantics/) 챕터에서 이에 대한 많은 것들을 다루었기 때문에, 이것이 얼마나 고통스러운 일인지 잘 알고 있습니다. 믹스인 역시 문제가 될 수 있는데 다음에 간단하게 다룰 것입니다.
 
-Whilst we often try to abstract CSS too much too soon, there are obviously going to be times when reuse makes sense. The question must be answered, *how can we reuse a style?*
+간혹 CSS 를 너무 지나치게 추상화하려고 합니다. 반면에 CSS 를 그대로 재사용하는 것이 더 유리한 경우도 분명히 있습니다. 다음 질문에 답해보세요, _어떻게 우리는 스타일을 재사용할 수 있을까요?_
 
-## How can we reuse a style?
+## 어떻게 스타일을 재사용할 수 있을까요?
 
-If we want to reuse a style, one option would be to comma-delimit selectors inside a well-named file, which if you're into SASS is exactly what `@extend` does. For example, if multiple elements need red text, we could do this:
+만약 스타일을 재사용하길 원한다면, 한 가지 옵션은 올바르게 명명된 파일 내부의 선택자를 쉼표로 구분하는 것입니다. 만약 당신이 SASS 문법에 익숙하다면, `@extend` 가 답입니다. 예를 들어 여러 요소에 빨간색 글씨를 추가해야 하는 경우에, 이렇게 할 수 있습니다:
 
-	.someThing,
-	.anotherThing {
-	  color: red;
-	}
+    .someThing,
+    .anotherThing {
+      color: red;
+    }
 
-This approach should be used for convenience, not for performance. (If the abstraction only has one rule, we're simply exchanging one line of code for another.)
+이러한 방식은 성능이 아닌 편의성만을 고려한 것입니다. (하나의 규칙에 대한 추상화만 있다면, 단 한 줄의 코드만 서로 바꾸면 됩니다.)
 
-If a selector deviates from the rules inside the abstraction, it should be removed from the list. Otherwise it could regress the other selectors and cause override issues.
+만약 이 선택자가 추상화된 규칙에서 벗어나게 되면 코드를 삭제해야 합니다. 그렇지 않으면 다른 선택자의 퇴행 문제를 일으킬 수 있습니다.
 
-It's important to note that this is one of several techniques at our disposal. When a *thing* is well understood we can make use of other techniques, which we'll discuss in [Modules](/chapters/modules/), [State](/chapters/state/) and [Modifiers](/chapters/modifiers/).
+이에 대응할 수 있는 몇 가지 테크닉이 존재한다는 사실을 명심하세요. _문제_ 를 올바르게 파악했을 때 우리는 이러한 기술들을 활용할 수 있습니다. 앞으로 [모듈](/chapters/modules/), [상태](/chapters/state/) 그리고 [식별자](/chapters/modifiers/)에 대해 논의할 것입니다.
 
-## What about mixins?
+## 믹스인은 어떤가요?
 
-Mixins provide the best of both worlds. At least in theory.
+믹스인은 양 극단의 상황에서 모두 최선의 대안입니다. 최소한 이론적으로는 말이죠.
 
-Like utility classes, updating a mixin propagates to all instances. If we don't have a handle of what's using the mixin, we increase the risk of regression. Instead of updating a mixin, we can create another, but this causes redundancy.
+다목적 클래스와 마찬가지로, 믹스인을 업데이트 하게 되면 모든 인스턴스에 영향을 미칩니다. 만약 믹스인을 제대로 다룰 수 있는 마땅한 수단이 없다면, 퇴행의 위험성은 그만큼 높아집니다. 믹스인을 업데이트 하는 것 대신 다른 방식을 택할 수도 있지만, 불필요한 코드의 중복 문제가 생깁니다.
 
-Also, mixins easily end up with many rules, multiple parameters, and conditionality. This is complicated. Complicated is hard to maintain.
+또한, 믹스인은 많은 규칙과, 조건, 파라미터 등을 가지고 있는 경우라도 간단하게 끝맺을 수 있습니다. 복잡하면 좋지 않습니다. 복잡성은 유지보수하기 어렵게 만듭니다.
 
-To mitigate this complexity, we can create granular mixins, such as one for red text. At first this seems better. But isn't the declaration of a red mixin, the same as the rule itself i.e. `color: red`?
+이러한 복잡성을 줄이기 위해, 우리는 빨간색 텍스트 전용과 같은 세부적인 믹스인을 만들 수 있습니다. 처음에는 이 방식이 훨씬 더 나아 보입니다. 하지만 빨강 믹스인이라고 한다면 명확하지 않습니다. 이것은 해당 규칙, 즉 `color: red` 에 대한 것이 확실할까요?
 
-If we need to update the rule in multiple places, a search and replace might be all that's necessary. Also, when the red *mixin* changes to *orange*, its name will need updating anyway.
+만약 여러 곳의 규칙을 업데이트해야 한다면, 검색해서 수정하는 일은 필요합니다. 또한 빨강 _믹스인_ 이 _오렌지_ 로 바뀌게 되면, 그 이름도 마찬가지로 업데이트 해야 합니다.
 
-With all that said, mixins can be very useful. We might, for example, want to apply *clearfix* rules across different elements and only within certain breakpoints. This is something that vanilla CSS can't do elegantly.
+앞에서 계속 설명했다시피, 믹스인은 매우 유용한 도구가 될 수 있습니다. 예를 들어 우리는 특정 브레이크 포인트에서만 다른 요소들 사이의 _clearfix_ 규칙을 적용하길 원할 수 있습니다. 이는 바닐라 CSS 만으로는 우아하게 처리할 수 없습니다.
 
-As such, mixins are not *bad*, it's just that we should use them judiciously.
+따라서, 믹스인은 _나쁘지_ 않습니다. 단지 분별있게 사용하기만 하면 됩니다.
 
-## What about performance?
+## 성능은요?
 
-We often overthink performance and get obsessed with tiny details. Even if CSS did total more than 100kb, there's little to gain from mindlessly striving for DRYness.
+우리는 종종 성능에 너무 집착한 나머지 작은 디테일로 인해 괴로워하곤 합니다. 심지어 CSS 전체 사이즈가 100kb 를 넘어도, 코드의 중복을 극단적으로 배제해서 얻을 수 있는 이득은 거의 없다고 봐야 합니다.
 
-Making CSS small makes HTML big. CSS can always be cached. But HTML often contains dynamic and personalised content&mdash;so it can't be cached.
+CSS 를 작게 만드는 것은 HTML 을 크게 만듭니다. CSS 는 언제나 캐시되기 때문입니다. HTML 은 종종 동적이고 개인화된 콘텐츠를 포함합니다&mdash;때문에 캐시되어서는 안 됩니다.
 
-The compression of a single image gives us a better return on investment. And as we've discussed, resolving other forms of redundancy improves maintainability *and* performance.
+한 개의 이미지를 압축하면 훨씬 더 높은 효과를 얻을 수 있습니다. 앞에서 설명한 것처럼, 다른 형태의 중복 문제를 해결함으로써 보존성 _그리고_ 성능을 개선할 수 있습니다.
 
-As you'll see in later chapters, the conventions in this guide, mean CSS class names have repeated prefixes which works especially well with GZip.
+다음 챕터에서 다루고 있는 이 가이드에 포함된 규칙에 따르면, CSS 클래스 이름은 항상 반복되는 접두사를 가지고 있으며 특히 GZip 에서 더욱 잘 적용됩니다.
 
-## Is this violating DRY principles?
+## 중복배제 원칙을 위반한 것은 아닌가요?
 
-Attempting to reuse, for example `float: left`, is akin to trying to reuse variable names in different Javascript objects. It's simply not in violation of DRY.
+이를테면 `float: left` 재사용을 시도하는 것은, 자바스크립트에서 다른 객체 사이에 변수를 재사용하는 것과 유사합니다. 이는 중복배제를 위반한 것이 전혀 아닙니다.
 
-## Final thought
+## 결론
 
-Striving for DRY leads to over-thought and over-engineered code. In doing so we make maintenance harder, not easier. Instead of obsessing over styles, we should focus on reusing tangible modules. Something we'll discuss in upcoming chapters.
+중복배제를 위한 시도는 지나치게 많은 생각과 오버 엔지니어링 코드를 초래합니다. 그렇게 되면 유지보수를 더욱 어렵게 만듭니다. 외형에 과도하게 집착하는 것 보다는, 실재하는 모듈을 재사용하는 것에 집중할 필요가 있습니다. 다음 장에서 이어서 논의할 내용입니다.

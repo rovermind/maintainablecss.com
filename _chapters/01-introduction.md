@@ -1,35 +1,35 @@
 ---
 layout: chapter
-title: Introduction
+title: 서론
 section: Preface
 permalink: /chapters/introduction/
-description: An introduction to MaintainableCSS, an approach to writing modular, scalable and of course maintainable CSS.
+description: CSS를 모듈화하고, 연산 가능하며, 유지보수할 수 있게 작성하는 방법론인 MaintainableCSS 소개.
 ---
 
-MaintainableCSS is an approach to writing modular, scalable and maintainable CSS. Not only does this guide explain *how* to do this, but more importantly it explains *why*.
+MaintainableCSS 는 CSS 를 모듈화하고, 연산 가능하며 유지보수할 수 있게 작성하는 방법론입니다. 이 가이드는 이를 어떻게 다루는지에 대한 _방법_ 뿐만 아니라, _어째서_ 이러한 접근 방식이 팔요한 것인지를 더 중요하게 설명합니다.
 
-## There's nothing to download
+## 다운로드할 필요가 전혀 없습니다.
 
-This is not a library or framework. It's a set of principles, guides and conventions to help you write CSS for small or large-scale websites.
+이것은 라이브러리나 프레임워크가 아닙니다. 단지 원칙들을 한 곳에 모아놓은 것이며, 당신이 CSS 를 이용해 크고 작은 규모의 웹사이트를 만들 수 있도록 도와주기 위한 가이드이자, 규칙입니다.
 
-## What does maintainable mean?
+## 유지보수가 가능한 것(Maintainable) 은 무엇을 의미하나요?
 
-Maintainable CSS can be defined as being able to make styling changes, without worrying about accidentally causing problems elsewhere.
+유지보수가 가능한 CSS 는 언제 어디서든 CSS 로 인한 갑작스러운 문제가 발생할 걱정을 전혀 하지 않으면서 스타일 작업을 할 수 있는 것이라고 정의할 수 있습니다.
 
-## What does scalable mean?
+## 연산 가능한 것(scalable) 은 무엇을 의미하나요?
 
-Scalable CSS means that as CSS increases in size, it's still easy to maintain. If you've ever inherited a large CSS codebase, and been afraid to make changes, you'll sympathise with this.
+연산 가능한 CSS 는 가령 CSS 를 이용하여 사이즈를 늘려야 하는 경우일지라도, 여전히 유지보수하기 쉽다는 사실을 의미합니다. 만약 당신이 더 큰 범위의 CSS 코드베이스를 상속받아야 할 때 발생할 수 있는 변화를 걱정해야 되는 경우에, 이 원리로 인해 안심할 수 있을 것입니다.
 
-## What does modular mean?
+## 모듈화(modular) 는 무엇을 의미하나요?
 
-A module is a distinct, independent unit that can be combined with other modules to form a more complex structure. In a living room, we can consider the TV, the sofa and the wall art to be modules, all coming together to create a room.
+모듈이란 하나의 뚜렷하고, 독립적인 단위입니다. 더 복잡한 구조를 만들기 위해 다른 모듈과 결합할수도 있습니다. 우리는 거실에서 TV 나 소파, 벽에 걸려 있는 그림 등을 모듈로써 고려할 수 있습니다. 이것들이 모두 모여서 하나의 방이 만들어집니다.
 
-If we take one of the units away, the others still work. We don't need the TV to be able to sit on the sofa etc. In a website the header, registration form, shopping basket, article, product list, navigation and homepage promo can all be considered to be modules.
+만약 이 중 하나를 따로 떨어뜨려 놓아도, 다른 것들의 기능에 문제가 전혀 없습니다. 예를 들어 우리는 소파에 앉기 위해 TV 를 켜야 할 필요가 없습니다. 웹사이트에서는 헤더, 회원가입 폼, 쇼핑 바구니, 아티클, 상품 리스트, 네비게이션과 프로모션을 위한 홈페이지 템플릿 등이 모두 이러한 모듈로 여겨집니다.
 
-## Is this for you?
+## 꼭 필요할까요?
 
-If you've ever experienced pain when writing or maintaining CSS, then you'll find useful information in this book. And if you work in a team, this book can serve as documentation.
+만약 당신이 이전에 CSS 를 새로 작성하거나 유지보수한 경험이 있었다면, 이 콘텐츠에서 유용한 정보를 얻을 수 있을 것입니다. 또한 당신이 팀으로 일하고 있다면, 팀 문서로서 이 내용들을 활용할 수 있습니다.
 
-## Is this hard to learn?
+## 배우기에 어렵지 않을까요?
 
-No. You can read this in under 20 minutes which includes the rationale behind the approach. Implementing it takes less than a minute.
+그렇지 않습니다. 접근법부터 이를 뒷받침하는 근거를 포함하여 20 분 정도면 완독할 수 있습니다. 그리고 이를 실제로 구현하는 것은 채 1 분이 안 걸립니다.

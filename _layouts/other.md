@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html dir="ltr" lang="en">
+
+<html dir="ltr" lang="ko">
 	<head>
 	    <title>{{ page.title }} - {{ site.name }}</title>
 	    {% include head.html %}

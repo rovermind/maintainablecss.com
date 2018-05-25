@@ -1,154 +1,154 @@
 ---
 layout: chapter
-title: Modules
+title: 모듈
 section: Core
 permalink: /chapters/modules/
-description: Learn the differences between modules and components and how to identify them within a design. We'll also code up some example modules together.
+description: 모듈과 컴포넌트 사이의 차이점과 설계 과정에서 어떻게 식별하는지 배워봅니다. 그리고 몇 가지 모듈 예시를 직접 코딩해봅니다.
 ---
 
-## What's a module?
+## 모듈이란?
 
-A module is a distinct, independent unit, that can be combined with other modules to form a more complex structure.
+모듈은 독자적이고, 독립적인 하나의 단위입니다. 다른 모듈과 결합되어 더 복잡한 구조를 형성할 수도 있습니다.
 
-In a living room, we can consider the TV, the sofa and the wall art modules. All coming together to create a useable room.
+거실에 있는 TV, 소파, 벽화를 고려할 수 있습니다. 모두가 함께 모여서 하나의 실용적인 방이 만들어집니다.
 
-If we take one of the units away, the others still work. We don't need the TV to be able to sit on the sofa etc.
+만약 그 중 하나를 따로 떨어뜨려 놓아도, 다른 것들의 기능에는 전혀 문제가 없습니다. 소파에 앉기 위해 TV 가 꼭 필요하지는 않습니다.
 
-In a website the header, registration form, shopping basket, article, product list, navigation and homepage promo can all be considered to be modules.
+웹사이트의 헤더, 회원가입 폼, 쇼핑 바구니, 기사, 상품 리스트, 네비게이션과 프로모션을 위한 홈페이지 템플릿 등이 모두 이러한 모듈로 여겨집니다.
 
-## What's a component?
+## 컴포넌트란?
 
-A module is made up of components. Without the components, the module is incomplete or broken.
+모듈은 컴포넌트가 모여 이루어집니다. 컴포넌트가 없는 모듈은 불완전하고 문제에 취약합니다.
 
-For example a sofa is made up of the frame, upholstery, legs, cushions and back pillows, all of which are required components to allow the sofa to function as designed.
+예를 들어 소파는 프레임, 덮개, 소파 다리, 쿠션과 등베개 등으로 이루어지며, 이것들은 모두 소파가 원래 설계한대로 기능하기 위해 꼭 필요한 구성 요소들입니다.
 
-A logo *module* might consist of copy, an image and a link, each of which are components. Without the image the logo is broken, without the link the logo is incomplete.
+로고 _모듈_ 은 카피, 이미지와 링크로 이루어 질 것이며, 이것들 모두 컴포넌트입니다. 이미지가 없는 로고는 깨질 수 있고, 링크가 없는 로고는 불완전합니다.
 
-## Modules vs components
+## 모듈 vs 컴포넌트
 
-Sometimes it's hard to decide whether something should be a component or a module. For example, we might have a header containing a logo and a menu. Are these components or modules?
+때로는 컴포넌트인지 모듈인지 분간하기 어려운 경우가 있습니다. 예를 들어, 로고와 메뉴를 포함한 헤더가 있습니다. 이것들은 모듈일까요 아니면 컴포넌트일까요?
 
-In a recent project it made most sense for the logo to be a component and the menu to be a module of its own. What's a header without logo? And the navigation might be moved below the header.
+최근의 프로젝트에서는 로고는 컴포넌트로, 메뉴는 모듈로 구성하는 것이 가장 바람직했습니다. 그렇다면 로고가 없는 헤더는요? 또는 네비게이션이 헤더를 벗어날 수도 있습니다.
 
-Nobody understands your requirements as well as you do. Through experience you'll get a feel for it. And if you get it wrong, changing from a component to a module is easy.
+당신이 설명하는 것에 대해서 아무도 이해하지 못할 수 있습니다. 계속해서 경험하다 보면 그것이 어떤 상황인지 알 수 있을 것입니다. 만약 잘못된 점을 알아차리는 경우라도, 컴포넌트를 모듈로 변경하는 것은 쉬운 일입니다.
 
-That's enough theory. Let's build three different modules together. In doing so, the hope is to cover most of the things we think about when writing CSS.
+충분히 설명했습니다. 세 개의 서로 다른 모듈을 만들어 보겠습니다. 이 과정에서 여러분이 CSS 를 작성할 때 구상하는 것들의 대부분을 구현할 수 있기를 바랍니다.
 
-## 1. Creating a basket module
+## 1. 장바구니 모듈 만들기
 
-We'll simplify this basket for brevity. Each product within the basket will display the product's title with the ability to remove it from the basket.
+간단한 구조의 장바구니를 만들어 봅니다. 바구니에 담긴 각각의 상품들은 바구니에 담겨있는 갯수와 상품명을 함께 보여줍니다.
 
-The basket template might be:
+바스켓 템플릿은 다음과 같습니다:
 
-	<div class="basket">
-	  <h1 class="basket-title">Your basket</h1>
-	  <div class="basket-item">
-	      <h3 class="basket-productTitle">Product title</h3>
+    <div class="basket">
+      <h1 class="basket-title">Your basket</h1>
+      <div class="basket-item">
+          <h3 class="basket-productTitle">Product title</h3>
           <form>
               <input type="submit" class="basket-removeButton" value="Remove">
-	      </form>
-	  </div>
-	</div>
+          </form>
+      </div>
+    </div>
 
-And the CSS would be:
+CSS 입니다:
 
-	.basket {}
-	.basket-title {}
-	.basket-item {}
-	.basket-productTitle {}
-	.basket-removeButton {}
+    .basket {}
+    .basket-title {}
+    .basket-item {}
+    .basket-productTitle {}
+    .basket-removeButton {}
 
-## 2. Creating an order summary module
+## 2. 주문표 모듈 만들기
 
-Next, we will build an order summary module. This module is shown during checkout and bears some resemblance to the basket. For example, it has a title and it displays a list of products.
+그 다음엔, 주문표를 만들 것입니다. 이 모듈은 주문 단계에서 나타날 것이며 장바구니 모듈과 거의 유사합니다. 제목을 가지고 있으며 상품의 리스트를 나타냅니다.
 
-It does, however, have a different aesthetic and the products can no longer be removed i.e. no form and no remove button.
+그렇지만 다른 외형적 특성을 가지고 있으며 상품들은 더 이상 제거될 수 없습니다. 즉 폼도 없고 제거 버튼도 없습니다.
 
-The first thing to address is the temptation to reuse the basket template (and CSS). Even though there are similarities, this does not mean they are the same.
+처음에는 이미 만들어진 장바구니 템플릿(CSS 까지 포함하여)을 그대로 재사용하고 싶은 유혹에 빠질 수 있습니다. 유사점이 있다고 하지만, 둘은 전혀 다릅니다.
 
-If we try to combine them we'll entangle two modules with display logic and CSS overrides. This entangling by definition is complex which in turn is hard to maintain and easily avoidable.
+만약 이 둘을 하나로 합치려고 하면 디스플레이 로직이 서로 얽히게 되어서 오버라이드 문제에 직면하게 될 것입니다. 이렇게 생긴 문제는 복잡성을 낳게 되어 유지보수의 어려움을 가중시킵니다.
 
-Instead, we should create a new module with the following template:
+대신에, 다음과 같은 템플릿으로 새로운 모듈을 만들어 봅니다:
 
-	<div class="orderSummary">
-	  <h2 class="orderSummary-title">Order summary</h2>
-	  <div class="orderSummary-item">...</div>
-	  <div class="orderSummary-item">...</div>
-	</div>
+    <div class="orderSummary">
+      <h2 class="orderSummary-title">Order summary</h2>
+      <div class="orderSummary-item">...</div>
+      <div class="orderSummary-item">...</div>
+    </div>
 
-And the CSS would be:
+CSS 입니다:
 
-	.orderSummary {}
-	.orderSummary-title {}
-	.orderSummary-item {}
+    .orderSummary {}
+    .orderSummary-title {}
+    .orderSummary-item {}
 
-As counterintuitive as this may seem, duplication is a better prospect. And, this is not really duplication. Duplication is copying the *same* thing. These two modules might look similar but they are not the same.
+다소 직관적이지는 않아 보이지만, 중복성의 문제에서 벗어날 수 있습니다. 실제로 이 템플릿은 중복되지 않았습니다. 중복성이란 _똑같은_ 것을 그대로 복사한 것입니다. 이 두 모듈은 비슷해 보이긴 하나 동일한 것은 아닙니다.
 
-Keeping things separate, keeps things simple. Simple is the most important aspect of building reliable, scalable and maintainable software.
+분리되어 있는 상태를 유지하십시오. 더 간결해집니다. 간결함은 신뢰할 수 있고, 확장 가능하며, 유지보수가 가능한 소프트웨어를 구축하는 가장 중요한 요소입니다.
 
-## 3. Creating a button module
+## 3. 버튼 모듈 만들기
 
-As our basket module only appears in the basket page, we didn't consider being able to reuse it elsewhere. Also, we didn't address the fact that the remove button is a component of the basket, making it harder to reuse across modules.
+장바구니 모듈은 오직 장바구니 페이지에서만 나타나기 때문에, 우리는 이것을 다른 곳에서 재사용할 수 있는 점을 간과합니다. 또한 제거 버튼이 장바구니 컴포넌트의 한 요소라는 사실을 알아채지 못할 수 있고, 여러 모듈에서 재사용하는 것을 더욱 어렵게 만듭니다.
 
-Buttons are an example of something that we want to reuse in lots of places, and potentially *within* different modules. (A button is not particularly useful on its own.)
+버튼은 단지 여러 모듈 _내부_ 에서 재사용하고, 그 외 다른 곳들에서도 반복적으로 사용하려는 무언가의 한 가지 사례일 뿐입니다. (버튼이 그 자체로 하나만 존재하는 경우는 예외로 합니다.)
 
-One option would be to upgrade the button component into a module as follows:
+하나의 옵션은 다음과 같이 버튼 컴포넌트를 모듈로 업그레이드 하는 것입니다:
 
-	<input class="button" type="submit" value="{%raw%}{{text}}{%endraw%}">
+    <input class="button" type="submit" value="{%raw%}{{text}}{%endraw%}">
 
-And the the CSS would be:
+CSS 는 다음과 같습니다:
 
-	.button {}
+    .button {}
 
-The problem is that buttons often have slightly different positioning, sizing and spacing depending on context. And of course there are media queries to consider.
+문제는 상황에 따라 위치, 사이즈, 간격 등이 조금씩 다른 경우가 있다는 것입니다. 물론 그에 대한 대안으로 미디어 쿼리가 있습니다.
 
-For example, within one module a button might be floated to the right next to some text. In another it might be centered with some text beneath with some bottom margin.
+예를 들면, 한 모듈 내부의 버튼이 특정 테스트 오른쪽에 플로팅되어야 할 수 있습니다. 또 다른 경우에는 하단의 여백과 함께 특정 테스트 아래에 가운데 정렬료 표시되어야 할 수 있습니다.
 
-Ideally, we should iron out these inconsistencies in *design*, before they even make their way into code. But as this is not always possible and for the purposes of example, we'll assume we have to deal with these issues.
+이상적으로는, 코드로 옮겨지기 이전에 _설계_, 단계에서 이러한 문제를 해결해야 합니다. 그러나 항상 그렇게 할 수는 없는 일이기 때문에 이러한 문제에 언제든 직면하게 되고 이를 해결할 수 있어야 한다는 사실을 가정해야 합니다.
 
-And so, because of these differences, it's tricky to abstract the common rules because we don't want to end up in override hell. Or worse that we're afraid to update the abstracted CSS rules.
+더욱이 이러한 차이점으로 인해, 오버라이드 지옥에서 벗어나고 싶은 개발자들에게 있어서 공통의 규칙을 추상화하는 것은 매우 까다로운 일입니다. 또는 이미 추상화되어 있는 CSS 규칙을 업데이트 하는 것은 더 어렵습니다.
 
-To avoid these problems, we can use a mixin or comma-delimit the common rules that aren't affected by their context. For example:
+이러한 문제들로부터 벗어나기 위해서, 우리는 믹스인을 사용하거나 컨텍스트에 영향을 받지 않는 공통의 규칙을 쉼표로 구분할 수 있습니다. 예를 들면:
 
-	.basket-removeButton,
-	.another-loginButton,
-	.another-deleteButton {
+    .basket-removeButton,
+    .another-loginButton,
+    .another-deleteButton {
       background-color: green;
       padding: 10px;
       color: #fff;
-	}
+    }
 
-Notice that in this example, we don't specify `float`, `margin` or `width` etc. Those styles are applied to the unique button:
+이 예시에 주목하기 바랍니다. `float`, `margin` 또는 `width` 등을 명시적으로 지정하지 않았습니다. 이러한 스타일들은 각각의 고유한 버튼에만 적용됩니다:
 
-	.basket-removeButton {
-	  float: right;
-	}
+    .basket-removeButton {
+      float: right;
+    }
 
-	.another-deleteButton {
-	  margin-bottom: 10px;
-	}
+    .another-deleteButton {
+      margin-bottom: 10px;
+    }
 
-This seems sensible as it means we can opt in to these common styles. The opposite, of course being having to override. But there's another, third option.
+이러한 공통의 스타일을 선택적으로 적용할 수 있다는 사실은 합리적으로 보입니다. 반대로 CSS 를 덮어써야 하는 경우도 물론 있습니다. 또 다른 세번째 옵션이 있습니다.
 
-Imagine a checkout flow whereby each page has a continue button and a link to the previous step. We can reuse this by upgrading it into a module:
+각 페이지에 진행 버튼과 이전 단계로 이동하는 버튼이 존재하는 결제 흐름을 상상해 보세요. 역시 모듈로 업그레이드해서 재사용 할 수 있습니다:
 
-	<div class="checkoutActions">
-	  <input class="checkoutActions-continue">
-	  <a class="checkoutActions-back"></a>
-	</div>
+    <div class="checkoutActions">
+      <input class="checkoutActions-continue">
+      <a class="checkoutActions-back"></a>
+    </div>
 
-And the CSS would be:
+CSS 입니다:
 
-	.checkoutActions-continue { }
+    .checkoutActions-continue { }
 
-	.checkoutActions-back { }
+    .checkoutActions-back { }
 
-In doing this, we abstracted and applied the styles to a well understood `.checkoutActions` module. And we've done this without affecting similar, but not identical buttons.
+이러한 과정에서 `.checkoutActions` 모듈을 올바르게 이해할 수 있으며 스타일을 추상화하여 적용할 수 있습니다. 비슷해 보이지만 서로 다른 버튼끼리 영향을 미치지 않고 이러한 작업을 수행할 수 있습니다.
 
-We haven't discussed having more than one type of button (primary and secondary etc) yet. To do this we can use modifiers, which is addressed later.
+아직 한 개 이상 유형의 버튼(기본 및 보조 버튼과 그 밖의 것들) 이 있는 경우에 대해 논의하지 않았습니다. 이 경우 식별자를 사용할 수 있으며, 추후에 다루도록 하겠습니다.
 
-## Final thought
+## 결론
 
-A module, by definition, is a reusable chunk of HTML and CSS. Before a group of elements can be upgraded into a module, we must first understand what it is and what its different use cases are.
+정의하면 모듈은 HTML 과 CSS 의 재사용할 수 있는 하나의 덩어리라고 할 수 있습니다. 한 그룹의 요소들을 모듈로 업그레이드하기 전에 먼저 그것이 무엇인지, 사용할 수 있는 다른 경우는 어떤 것이 있는지를 반드시 파악해야 합니다.
 
-Only then, can we design the right abstraction. And in doing so, we avoid complexity at the same time, which is the source of unmaintainable CSS.
+그렇게 했을 때에만 올바른 추상화를 위한 설계가 가능합니다. 그렇게 함으로써 CSS 의 유지보수가 어려워지는 문제의 근원이 되는 복잡성을 해결할 수 있습니다.

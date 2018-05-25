@@ -1,48 +1,48 @@
 ---
 layout: chapter
-title: State
+title: 상태
 section: Core
 permalink: /chapters/state/
-description: Learn how to provide different styles to your modules and components based on state, such as showing, hiding and loading.
+description: 나타나거나 사라지거나 로딩 중일 때와 같은 상태에 따라 모듈과 컴포넌트의 스타일을 다르게 적용하는 방법에 대해 배워봅니다.
 ---
 
-Quite often, particularly with richer user interfaces, styling needs to be applied in response to an element's change of state. For example, we may have different styles when a module (or component) is:
+특별히 사용자 인터페이스가 풍부한 경우에 요소의 상태 변화에 따른 적절한 스타일을 적용해야 할 필요가 있습니다. 예를 들어, 다음과 같은 모듈(또는 컴포넌트) 마다 다른 스타일을 적용해야 합니다:
 
-- showing or hiding
-- active or inactive
-- disabled or enabled
-- loading or loaded
-- hasProducts or hasNoProducts
-- isEmpty or isFull
+* 나타나거나 사라질 때
+* 활성화되거나 비활성화될 때
+* 사용할 수 없거나 사용 가능할 때
+* 로딩 중 또는 로딩되었을 때
+* 상품이 담겨있거나 비워졌을 때
+* 비어있거나 가득 찼을 때
 
-To represent state we need an additional class which should be added to the module (or component) element to which it pertains. For example, if our basket module needs a gray background when it's empty, the HTML should be:
+이러한 상태를 나타내기 위한 부가적인 클래스명이 필요합니다. 이 클래스는 반드시 연관된 모듈(또는 컴포넌트) 요소에 추가되어야 합니다. 예를 들어, 비워져있을 때에는 회색 배경 색상이 적용되어야 하는 장바구니 모듈의 경우, HTML 은 다음과 같습니다:
 
-	<div class="basket basket-isEmpty">
+    <div class="basket basket-isEmpty">
 
-And the CSS should be:
+CSS 입니다:
 
-	.basket-isEmpty {
+    .basket-isEmpty {
       background-color: #eee;
-	}
+    }
 
-The class name is prefixed with the module (or component) because whilst states might be common, associated styles might not. For example, an empty *basket* has a gray background, where as an empty search has an absolutely-positioned image.
+이 클래스 이름은 모듈(또는 컴포넌트)과 관련된 접두사가 붙습니다. 왜냐하면 상태 자체는 일반적일 수 있지만, 그에 연관된 스타일은 그렇지 않을 수 있기 때문입니다. 예를 들어, 비어있는 _장바구니_ 는 회색 배경 색상인데, 비어있는 검색창은 절대 위치의 이미지를 포함하는 경우입니다.
 
-## What about reusing state?
+## 상태를 재사용하는 경우?
 
-Sometimes, we may in fact want to reuse state across modules or components. For example, toggling an element's visibility. This is discussed in more detail in the chapter entitled [Javascript](/chapters/javascript/).
+때때로, 모듈과 컴포넌트 사이의 상태를 재사용하길 원할 수 있습니다. 예를 들면 어떤 요소의 시각적 상태를 토글하는 경우입니다. 이 문제는 [자바스크립트](/chapters/javascript/) 챕터에서 조금 더 상세하게 살펴보도록 하겠습니다.
 
-## What about ARIA attributes?
+## ARIA 어트리뷰트를 사용하는 경우?
 
-Not all visual states can be represented by an [ARIA attribute](https://www.w3.org/TR/wai-aria/states_and_properties#attrs_widgets). For example, there's no attribute to represent `hasProducts`. Therefore, we should use them only when necessary and in *addition* to classes.
+모든 시각적 상태를 [ARIA 속성](https://www.w3.org/TR/wai-aria/states_and_properties#attrs_widgets)로 표현할 수는 없습니다. 예를 들어, `상품이 담겨있는` 에 대응되는 적절한 속성은 존재하지 않습니다. 그러므로, 클래스 이름으로 표현되는 것 _외에_ 반드시 필요한 경우에만 사용해야 합니다.
 
-Also, using an attribute (instead of a class) selector has [less support](https://www.impressivewebs.com/attribute-selectors/). Whilst developers may consider these browsers old, insecure or irrelevant, we should avoid techniques that unnecessarily exclude users.
+또한, (클래스 대신에) 속성을 사용하는 선택자는 [브라우저 지원율이 부족합니다](https://www.impressivewebs.com/attribute-selectors/). 물론 개발자들은 이러한 오래되고 불완전한 브라우저에 대한 고려를 해야 하지만, 가급적이면 특정 사용자들을 제외시킬 수 있는 불필요한 기술은 배제하는 것이 좋습니다.
 
-## What about chaining classes?
+## 체이닝 클래스를 사용하는 경우?
 
-We could use a chained selector for state e.g. `.module.isDisabled`. The problem is that this approach has less browser support. We should avoid patterns that unnecessarily exclude users, unless there's a compelling reason to do so.
+이를테면 `.module.isDisabled` 와 같은 상태의 연속적인 선택자를 이용해야 할 수 있습니다. 이러한 접근방식 역시 브라우저의 지원률이 떨어집니다. 반드시 그렇게 해야만 하는 이유가 있지 않다면, 사용자들을 제외시킬 수 있는 패턴은 피해야 합니다.
 
-This also makes it harder to find out if/where the style is used, which makes maintaining harder.
+또한 이렇게 했을 때 발생하는 문제의 출처를 추적하기가 더욱 어렵고, 유지보수도 곤란해집니다.
 
-## Final thought
+## 결론
 
-If an element's style needs changing based on its state, we should add an extra class to apply the differences. When necessary, use ARIA attributes for assistive technology, not for styling. In doing so we employ a consistent and inclusive approach to styling.
+요소의 스타일을 상태에 기반하여 변경하게 되면, 그러한 차이를 나타내기 위한 여분의 클래스를 추가해야 합니다. 스타일링 목적을 제외하고 필요한 경우에만 보조 기술에 대한 ARIA 속성을 사용하세요. 그렇게 함으로써 일관되고 포괄적인 스타일링이 가능합니다.
